@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:hh="http://balusc.net/jsf/html"
+	xmlns:slider="http://java.sun.com/jsf/composite/slider/"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="../template/common/commonLayout.xhtml">
+	<ui:define name="content">
+
+		<div align="center">
+			<br />
+			<fieldset>
+
+				<h1>JAX-RS Upload Form</h1>
+
+				<form action="/rest/file/upload"  enctype="multipart/form-data" method="post">
+					<p>
+						Select an original photo: <input type="file" name="uploadedFileOrig" size="25" />
+					</p>
+					<p>
+						Select a logo image: <input type="file" name="uploadedFileLogo"	size="25" />
+					</p>
+					<p>
+						Please enter a name for your files <input type="text" name="name" size="25" />
+					</p>
+					<p>
+						Please enter a value between 2 and 16 to be used to determine how much to change each pixel.
+						<input type="text" name="maxChange" size="25" />
+					</p>
+					<p>
+						Please enter true or false depending on whether you are encoding or just decoding.
+						<input type="text" name="encode" size="25" />
+					</p>
+					
+					<input type="submit" value="Upload It" />
+				</form>
+			</fieldset>
+		</div>
+	</ui:define>
+</ui:composition>
+</html>

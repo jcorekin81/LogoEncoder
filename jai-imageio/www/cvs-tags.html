@@ -1,0 +1,183 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-1"
+ http-equiv="content-type">
+  <title>CVS Tags in JAI-Image I/O Projects</title>
+</head>
+<body>
+<h2>Using CVS Tags in Java Advanced Imaging
+Image I/O Tools Projects</h2>
+<p>This page describes the use and naming scheme for CVS tags in the
+following
+Java Advanced Imaging Image I/O Tools subprojects on
+java.net:
+jai-imageio-core, and jai-imageio-demos.<br>
+</p>
+<h3>Current Tags</h3>
+<p>The following tags are currently in use for Java Advanced Imaging
+Image I/O Tools
+subprojects.
+</p>
+<ul>
+  <li>MAIN branch (trunk) -- version 1.1</li>
+  <ul>
+Branch tag: N/A
+  </ul>
+  <ul>
+Revision tags (newest to oldest):
+    <ul>
+      <table border="0" cellpadding="2" cellspacing="2">
+          <tr>
+            <td style="vertical-align: top;"><code>root-1_2</code></td>
+            <td style="vertical-align: top;"><br>
+            </td>
+            <td style="vertical-align: top;">Root of version 1.2</td>
+          </tr>
+          <tr>
+            <td style="vertical-align: top;"><code>jai-imageio-1_1-fcs</code></td>
+            <td style="vertical-align: top;"><br>
+            </td>
+            <td style="vertical-align: top;">Version 1.1-fcs<br>
+            </td>
+          </tr>
+        <tbody>
+          <tr>
+            <td style="vertical-align: top;"><code>jai-imageio-1_1-beta</code></td>
+            <td style="vertical-align: top;"><br>
+            </td>
+            <td style="vertical-align: top;">Version 1.1-beta<br>
+            </td>
+          </tr>
+          <tr>
+            <td style="vertical-align: top;"><code>jai-imageio-1_1-dr-b03</code></td>
+            <td style="vertical-align: top;"><br>
+            </td>
+            <td style="vertical-align: top;">Version 1.1-dr-b03</td>
+          </tr>
+          <tr>
+            <td style="vertical-align: top;"><code>jai-imageio-1_1-dr-b02</code></td>
+            <td style="vertical-align: top;"><br>
+            </td>
+            <td style="vertical-align: top;">Version 1.1-dr-b02</td>
+          </tr>
+          <tr>
+            <td style="vertical-align: top;"><code>jai-imageio-1_1-dr-b01</code></td>
+            <td style="vertical-align: top;"><br>
+            </td>
+            <td style="vertical-align: top;">Version 1.1-dr-b01</td>
+          </tr>
+          <tr>
+            <td style="vertical-align: top;"><code>jai-imageio-1_1-alpha</code></td>
+            <td style="vertical-align: top;"><br>
+            </td>
+            <td style="vertical-align: top;">Version 1.1-alpha<br>
+            </td>
+          </tr>
+          <tr>
+            <td style="vertical-align: top;"><code>root-1_1</code></td>
+            <td style="vertical-align: top;"><br>
+            </td>
+            <td style="vertical-align: top;">Root of version
+1.1</td>
+          </tr>
+          <tr>
+            <td style="vertical-align: top;"><code>jai-imageio-1_0_01-fcs</code></td>
+            <td style="vertical-align: top;"><br>
+            </td>
+            <td style="vertical-align: top;">Version
+1.0_01-fcs</td>
+          </tr>
+        </tbody>
+      </table>
+    </ul>
+  </ul>
+</ul>
+<br>
+<h3>Description of Naming Scheme</h3>
+<h4>I. Revision (non-branch) tags</h4>
+<p>We use non-branch "revision" tags in CVS so we can later refer to a
+release by name without having to know the individual RCS revision
+numbers of each file or the exact date and time we made a release. This
+is done for one (or both) of two main reasons: first, to mark a release
+or otherwise checkpoint the state of the repository; second, to mark
+the point at which you will then branch. We use the following naming
+scheme to identify a revision tag.<br>
+</p>
+<h4>A. Revision tags used to mark releases or checkpoint the state:</h4>
+<ul>
+  <code>jai-imageio-&lt;MAJOR&gt;_&lt;MINOR&gt;_&lt;SUBMINOR&gt;{_&lt;PATCH&gt;|-{build&lt;N&gt;|alpha&lt;N&gt;|beta&lt;N&gt;|rc&lt;N&gt;|fcs}}</code><br>
+  <code></code><code>jai-imageio-{pre|post}merge-&lt;DST_BRANCHID&gt;-&lt;SRC_MERGE_POINT&gt;</code><br>
+</ul>
+<p>for example:<br>
+</p>
+<ul>
+  <code>jai-imageio-1_1-build1<br>
+jai-imageio-1_1-beta1<br>
+jai-imageio-1_1-rc2<br>
+jai-imageio-1_0_01-fcs<br>
+jai-imageio-postmerge-1_2-1_1-beta<br>
+  <br>
+  </code>
+</ul>
+<p>Use the following command to create a revision tag. Be sure your
+sources are up to date for the revision that you wish to tag and that
+you have committed any changes before running the "tag" command:<br>
+</p>
+<ul>
+  <code>cd &lt;PROJECT-ROOT-DIR&gt;<br>
+cvs tag -c &lt;tagname&gt;<br>
+  </code>
+</ul>
+<p>For example:<br>
+</p>
+<ul>
+  <code>cd cvs-dirs/jai-imageio-core<br>
+cvs tag -c jai-imageio-1_1-build2<br>
+  </code>
+</ul>
+<h4>B. Revision (non-branch) tags used to mark the root of a
+development branch:</h4>
+<ul>
+  <code>root-&lt;branchid&gt;</code> <i>// "branchid" is defined
+below</i><br>
+</ul>
+<p>for example:<br>
+</p>
+<ul>
+  <code>root-1_1<br>
+  </code>
+</ul>
+<h4>II. Branch tags</h4>
+<p>We use branch tags in CVS so we can refer to it later by name:<br>
+</p>
+<ul>
+  <code>dev-&lt;branchid&gt;-branch<br>
+patch-&lt;branchid&gt;-branch<br>
+  </code>
+</ul>
+<p>
+where "branchid" is <code>&lt;MAJOR&gt;_&lt;MINOR&gt;[_&lt;SUBMINOR&gt;]</code><code>[_&lt;PATCH&gt;]</code><code>[-&lt;QUALIFIER&gt;]</code>,
+for example:<br>
+</p>
+<ul>
+  <code>dev-1_1-branch<br>
+patch-1_1-branch<br>
+  </code>
+</ul>
+<p>Use the following command to create a branch tag.<br>
+</p>
+<ul>
+  <code>cd &lt;PROJECT-ROOT-DIR&gt;<br>
+cvs tag -b -r &lt;root_tagname&gt; &lt;branch_tagname&gt;<br>
+  </code>
+</ul>
+<p>For example:<br>
+</p>
+<ul>
+  <code>cd cvs-dirs/jai-imageio-core<br>
+cvs tag -b -r root-1_1 dev-1_1-branch<br>
+  </code>
+</ul>
+</body>
+</html>

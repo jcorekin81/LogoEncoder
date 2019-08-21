@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:composite="http://java.sun.com/jsf/composite">
+<body>
+
+	<composite:interface>
+		<composite:attribute name="id" required="false" />
+		<composite:attribute name="value" required="true" />
+		<composite:attribute name="min" required="false" />
+		<composite:attribute name="max" required="false" />
+	</composite:interface>
+
+	<composite:implementation>
+
+		<h:outputScript name="protototype.js" library="scriptaculous"
+			target="head" />
+		<h:outputScript name="scriptaculous.js" library="scriptaculous"
+			target="head" />
+		<h:outputScript name="effects.js" library="scriptaculous"
+			target="head" />
+		<h:outputScript name="controls.js" library="scriptaculous"
+			target="head" />
+		<h:outputScript name="slider.js" library="scriptaculous" target="head" />
+
+		<h:inputText id="sliderField" style="width:100px"
+			value="#{compositeComponent.attrs.value}"></h:inputText>
+		<div id="#{compositeComponent.clientId}_track"
+			style="width: 105px; background-color: #aaa; height: 5px;">
+			<div id="#{compositeComponent.clientId}_handle"
+				style="width: 5px; height: 10px; background-color: #f00; cursor: move;"></div>
+		</div>
+		<script type="text/javascript">
+    var slider_#{compositeComponent.attrs.id} = new Control.Slider('#{compositeComponent.clientId}_handle','#{compositeComponent.clientId}_track',{range:$R(#{compositeComponent.attrs.min},#{compositeComponent.attrs.max})});              
+
+    slider_#{compositeComponent.attrs.id}.options.onSlide = function(value){
+          $('#{compositeComponent.clientId}:sliderField').value = (value + '').split(".")[0];
+    };
+    </script>
+
+	</composite:implementation>
+</body>
+</html>
+

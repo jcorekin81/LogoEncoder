@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:hh="http://balusc.net/jsf/html"
+	xmlns:slider="http://java.sun.com/jsf/composite/slider/"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="../template/common/commonLayout.xhtml">
+	<ui:define name="content">
+
+		<div align="center">
+			<br />
+			<fieldset>
+				<h:form enctype="multipart/form-data" prependId="false">
+			
+				Please select the file you want to upload as your original image:<br />
+					<hh:inputFile id="orig" value="#{orig}" />
+					<br />
+				Please select the file you want to upload as your logo image:<br />
+					<hh:inputFile id="logo" value="#{logo}" />
+					<br />
+					<h3>Please enter a name for the files to share:</h3>
+					<h:inputText value="#{uploader.name}" />
+					<h3>Please select whether you want to encode a new file or
+						decode an existing file:</h3>
+					<h:selectOneRadio value="#{uploader.encodeString}">
+						<f:selectItem itemValue="encode" itemLabel="Encode" />
+						<f:selectItem itemValue="decode" itemLabel="Decode" />
+					</h:selectOneRadio>
+					<br />
+					<p>
+						<label for="sliderValue">Adjust the maximum amount of change per pixel:</label>
+						<h:inputText value="#{uploader.maxChange}" id="sliderValue" style="border: 0" size="2"/>
+					</p>
+					<div id="slider"></div>
+					<br />
+					<h:commandButton value="Encode" action="#{uploader.go}" />
+				</h:form>
+			</fieldset>
+		</div>
+	</ui:define>
+</ui:composition>
+</html>

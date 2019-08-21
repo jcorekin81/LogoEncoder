@@ -1,0 +1,179 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-1"
+ http-equiv="content-type">
+  <title>Contributing Patches</title>
+</head>
+<body>
+<h2>Contributing Patches</h2>
+<p>Well-described, easy-to-apply patches are a pleasure for a developer
+to receive and go a long way towards making the
+Java Advanced Imaging Image I/O Tools projects
+more stable and powerful, so thank you in advance for contributing
+them! </p>
+<h3>Making and applying a patch</h3>
+<p>First, make sure you are making changes in the most recent version
+of the sources. For this, it is best to use CVS to check out the source
+(usually on the CVS trunk; sometimes the most active release branch -
+ask if unsure), make your modifications (but do not check them in), and
+then run (example for Unix, other operating systems similar):</p>
+<p><code>$ cd /cvs-parent-dir</code></p>
+<p><code>$ ls</code></p>
+<p>shows all of the Java Advanced Imaging Image I/O Tools projects</p>
+<p><code>$ cvs update <em>ProjectName</em></code></p>
+<p>make sure you are working against current sources (note that <em>ProjectName</em>
+is the name of the project, for example
+jai-imageio-core)<br>
+</p>
+<p><code>$ cvs diff <em>ProjectName</em></code></p>
+<p>sanity-check the change</p>
+<p><code>$ cvs -f diff -u -N <em>ProjectName</em> &gt;
+/tmp/my-patch.diff</code></p>
+<p>sanity-check the patch</p>
+<p>If you are adding or modifying binary files, it is best to attach
+the
+new or modified binary files separately and exclude them from the
+textual patch.</p>
+<p>Common patch mistakes include:</p>
+<ol>
+  <li>
+    <p>Forgetting <code>-u</code>. Default-format diffs show no
+context and will be <em>hard to read and apply</em>, especially if
+they were made against somewhat out-of-date sources. <code>-c</code>
+is also OK but <code>-u</code> is most common.</p>
+  </li>
+  <li>
+    <p>Forgetting about new (added) files. Run <code>cvs add</code>
+(but do not commit!) to make sure CVS thinks of them as added as part
+of the patch, and remember <code>-N</code> which includes them in the
+patch. Also run <code>cvs remove</code> (but do not commit) when a
+patch should delete some files.</p>
+  </li>
+  <li>
+    <p>Using other switches such as <code>-t</code> which can make the
+patch difficult to apply.</p>
+  </li>
+  <li>
+    <p>Starting from the wrong directory. <em>Always</em> make patches
+from the root of the source tree to avoid confusion.</p>
+  </li>
+  <li>
+    <p>Manually editing patches. You may be tempted to concatenate
+patches, or manually edit them to exclude things you do not really want
+to submit. <em>Do not do this.</em> The patch may be corrupted as a
+result. Fix your sources to reflect what you want the result to be, and
+run a fresh diff. Include all affected files in the diff command, even
+if they are in different modules.</p>
+  </li>
+  <li>
+    <p>Including extraneous changes. Look over your patch to make sure
+every change relates to the fix you are making, and is necessary.
+Remember other people will read your patch before applying it! Do not
+make gratuitous whitespace changes. Do not reformat existing code you
+are not modifying.</p>
+  </li>
+  <li>
+    <p>Using the plain diff command. Use <code>cvs diff</code> to
+ensure that exact information about repository path and original
+version of the patched files is retained.</p>
+  </li>
+  <li>
+    <p>Using old sources. Patches made against obsolete sources may be
+hard to use. Make sure you are using recent versions of all source file
+(<code>cvs&nbsp;update</code> first). If you must submit several
+patches against the same files, be sure to indicate if they must be
+applied in some particular order.</p>
+  </li>
+</ol>
+<p>A properly made patch is easy to apply by someone with commit
+access who has reviewed it. Use of the Unix <code>patch</code> tool
+is recommended; Windows users should be able to get it from the
+Cygwin tools distribution.</p>
+<p>save patch to disk, say /tmp/suggested-patch.diff</p>
+<p><code>$ cd /cvs-parent-dir</code></p>
+<p><code>$ patch -p0 --dry-run &lt; /tmp/suggested-patch.diff</code></p>
+<p>make sure no errors are reported - this just tests the patch format</p>
+<p><code>$ patch -p0 &lt; /tmp/suggested-patch.diff</code></p>
+<p><code>$ cvs diff <em>ProjectName</em></code> (or whatever part of
+sources are affected)</p>
+<p>sanity-check diff, compare to patch (should be same or similar)</p>
+<p>test, do a build, commit as usual</p>
+<p>If the "dry run" fails, you may need to use additional
+options to <code>patch</code>, or at worst just apply the patch
+manually. Do not forget to sanity-check file additions and removals!
+You probably need to use <code>cvs add</code> and <code>cvs remove</code>
+to complete these.</p>
+<h3>Making a patch available and accepting it</h3>
+<p>The best way to submit a patch is through Issue Tracking. In some
+cases you could send it as a MIME attachment to the proper mailing
+list if it is a short patch and you are more expecting it to
+looked at for comments than applied as is. But usually patches ought
+to be put in Issue Tracking.</p>
+<p>First, if an issue describing the problem (or feature) you are
+trying to solve already exists, use it. If it does not, create an
+issue, and mark it to be of type <code>PATCH</code>. The issue should
+include at least the following:</p>
+<ul>
+  <li>
+    <p>The patch file itself, of course - as an Issue Tracking
+attachment, <em>not</em> pasted into the <b>Description</b> field.
+(Line-wrapped or reformatted patches are not usable. They must be
+exactly as produced by <code>cvs diff</code>.)</p>
+  </li>
+  <li>
+    <p>A description of what problem you are trying to fix, if possible
+with steps to reproduce it.</p>
+  </li>
+  <li>
+    <p>A description of what the behavior should be with the patch in
+place. Ideally also steps to demonstrate that the patch fixes the
+described problem.</p>
+  </li>
+  <li>
+    <p>If reasonable, a description of how the patch works.</p>
+  </li>
+  <li>
+    <p>If a significant amount of code is involved, it is safest to
+mention in the issue comments that you agree to let the patch be used
+under the project's license as part of the project's code. If you are
+adding new source files, they must be marked with the project's license
+notice or the patch cannot be accepted.</p>
+  </li>
+  <li>
+    <p>If this is your first code submission to any of the Java
+Advanced Imaging
+Image I/O Tools projects, you must submit a <a
+ href="contribute.html#JCA">Joint
+Copyright Assignment</a>.</p>
+  </li>
+  <li>
+    <p>The patch submitter should be either the submitter of the issue,
+or add him or herself to the CC list of the issue (format: <code><i>loginname</i></code>).
+This ensures that the submitter will see any comments or changes made
+to the issue and be able to respond if needed.</p>
+  </li>
+</ul>
+<p>The developer responsible for the section of code affected should
+either apply the patch and mark the issue <code>FIXED</code>; or add a
+comment with an objection if the patch does not seem safe, does not
+appear to fix the problem, or there is not really a problem to begin
+with. Developers must also confirm that the contributor has signed and
+submitted a JCA before commiting their patch, by checking the list
+of&nbsp; approved contributors that will be created as the Joint
+Copyright Assignment forms are received.<br>
+</p>
+<p>Notifications of any changes to Issue Tracking, as well as CVS
+checkins, are automatically sent to the appropriate bug and CVS
+mailing lists, so you can monitor if the patch has really been
+applied. Make sure you subscribe to at least the CVS and bug mailing
+lists for the module you are working on - see the project's mailing
+lists page for details.</p>
+<p>Of course, if you do not know exactly how to fix a problem, but
+have an idea that it is being caused by a certain section of code
+somehow, you can just mention what you know on the developer list and
+maybe someone else will know how to fix it. And please <a
+ href="https://jai-imageio.dev.java.net/#Reporting_Issues">report
+a bug</a> about it so it does not get lost.</p>
+</body>
+</html>

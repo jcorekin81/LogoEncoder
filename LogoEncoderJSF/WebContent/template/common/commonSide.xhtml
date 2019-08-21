@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html">
+<body>
+	<ui:composition>
+		
+		<h:outputLink value="/LogoEncoderJSF/pages/uploader.jsf" rendered="#{loginBean.loggedIn}" >
+				<h:outputLabel value="Return to Encoder" />
+			</h:outputLink>
+		<br/>
+		<br/>
+		<h:outputText value="Available Jobs:" rendered="#{loginBean.loggedIn}" />
+		<br/>
+		<ui:repeat value="#{photoList.links()}" var="link" varStatus="status" rendered="#{loginBean.loggedIn}"  >
+			<h:outputLink value="#{link.url}">
+				<h:outputLabel value="#{link.name}" />
+			</h:outputLink>
+			<br/>
+		</ui:repeat>
+	</ui:composition>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	version="3.0">
+	<servlet>
+		<servlet-name>Faces Servlet</servlet-name>
+		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+		<multipart-config />
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Faces Servlet</servlet-name>
+		<url-pattern>*.jsf</url-pattern>
+	</servlet-mapping>
+	<context-param>
+		<param-name>javax.faces.PROJECT_STAGE</param-name>
+		<param-value>Development</param-value>
+	</context-param>
+	<context-param>
+		<param-name>javax.faces.FACELETS_LIBRARIES</param-name>
+		<param-value>/WEB-INF/balusc.taglib.xml</param-value>
+	</context-param>
+
+	<servlet>
+		<display-name>FileServlet</display-name>
+		<servlet-name>FileServlet</servlet-name>
+		<servlet-class>display.FileServlet</servlet-class>
+		<init-param>
+			<param-name>basePath</param-name>
+			<param-value>C:/LogoEncoderImages/</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>FileServlet</servlet-name>
+		<url-pattern>/images/*</url-pattern>
+	</servlet-mapping>
+
+
+	<!-- ~~~~~~ -->
+	<!-- Spring 3 -->
+	<!-- http://code.google.com/p/app-demo/source/browse/sampleAppWeb/src/main/webapp/WEB-INF/web.xml?r=24 -->
+	<!-- ~~~~~~ -->
+	<filter>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<url-pattern>/*</url-pattern>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>REQUEST</dispatcher>
+	</filter-mapping>
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	<listener>
+		<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+	</listener>
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/applicationContext-security.xml</param-value>
+	</context-param>
+
+
+
+	<welcome-file-list>
+		<welcome-file>login.xhtml</welcome-file>
+		<welcome-file>login.jsf</welcome-file>
+	</welcome-file-list>
+
+
+</web-app>
