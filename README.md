@@ -1,2 +1,4 @@
 # LogoEncoder
-I small example of the types of Java Projects that I have writen in the past
+The initial purpose of this program was to embed black and white logos into JPEG based images, embedding them in across the entire image in a way that would be difficult to detect with the human eye while still being recoverable with the decoder component of the program.  To this extent it was relatively successful given that the JPEG algorithms are intended to remove such data in the first place.  That said, it became more of a demonstration of technologies that I was working than anything else.  At this point it may or may not be a usable project.  But I hope that it is still a good example of what can be done with the associate technologies.
+
+This is just an initial upload of the existing code that I wrote several years ago.  I intend to Mavenize this project as soon as I can, after which I will remove the jar files from the project.  At the moment they are primarily records of the library dependencies that this project requires to build.  If you are interested in the work that I did please reach out to me and I would love to discuss any aspect of the code.
